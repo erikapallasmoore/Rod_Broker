@@ -1,3 +1,5 @@
+// Gruntfile.js
+ 
 // Generated on 2014-07-18 using generator-angular 0.9.5
 'use strict';
  
@@ -182,7 +184,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       options: {
-        // cwd: '<%= yeoman.app %>'
+        cwd: '<%= yeoman.app %>'
       },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
