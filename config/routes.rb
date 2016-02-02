@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   scope '/api' do
     resources :groups, except: [:new, :edit]
   end
