@@ -70,36 +70,44 @@ angular.module('rodBrokerApp')
 //   }
 // }])
 
-// .controller('NavCtrl', ['$scope', 'Auth', 'Alerts', function($scope, Auth, Alerts) {
-//   $scope.alerts = Alerts.get();
-//   $scope.user = Auth.currentUser();
+.controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth, Alerts) {
+  // $scope.alerts = Alerts.get();
+  // $scope.user = Auth.currentUser();
 
-//   $scope.closeAlert = function(idx) {
-//     Alerts.remove(idx);
-//   };
+  $scope.closeAlert = function(idx) {
+    // Alerts.remove(idx);
+  };
 
-//   $scope.logout = function() {
-//     Auth.removeUser();
-//   }
-// }])
+  $scope.logout = function() {
+    // Auth.removeUser();
+  }
+}])
 
-// .controller('SignupCtrl', ['$scope', '$http', '$location', 'Alerts', 'Auth', function($scope, $http, $location, Alerts, Auth){
-//   $scope.user = {
-//     email: '',
-//     password: '',
-//     username: ''
-//   };
+.controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth){
+  $scope.user = {
+    email: '',
+    password: '',
+    username: ''
+  };
 
-//   $scope.userSignup = function() {
-//     $http.post('api/users', $scope.user).then(function success(res) {
-//       Alerts.add('success', 'User Created!');
-//       Auth.saveUser(res.data.user);
-//       $location.path('/');
-//     }, function error(res) {
-//       console.log(res);
-//     })
-//   }
-// }])
+  $scope.userSignup = function() {
+    console.log('hi!');
+    Auth.register($scope.user).then(function(registeredUser) {
+      console.log(registeredUser);
+    });
+    // $http.post('api/users', $scope.user).then(function success(res) {
+    //   // Alerts.add('success', 'User Created!');
+    //   Auth.saveUser(res.data.user);
+    //   $location.path('/');
+    // }, function error(res) {
+    //   console.log(res);
+    // })
+  };
+
+  $scope.$on('devise:new-registration', function(event, user) {
+    console.log('event fired');
+  });
+}])
 
 // .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth){
 //   $scope.user = {

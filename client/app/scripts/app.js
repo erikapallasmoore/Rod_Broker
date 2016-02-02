@@ -14,8 +14,9 @@ var app = angular.module('rodBrokerApp', [
   'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ngTouch'
-])
+  'ngTouch',
+  'Devise'
+]);
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -31,6 +32,10 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/groups.html',
       controller: 'GroupsCtrl'
     })
+    .when('/signup', {
+      templateUrl: 'views/userSignup.html',
+      controller: 'SignupCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
@@ -43,6 +48,12 @@ app.factory('Group', ['$resource', function($resource) {
 
 }]);
 
+app.config(function(AuthProvider) {
+  console.log(AuthProvider);
+  // AuthProvider.loginPath('/users/sign_in');
+  // AuthProvider.loginMethod('POST');
+  // AuthProvider.resourceName('user');
+});
 
  /////////////////////////// 
 
@@ -63,10 +74,7 @@ app.factory('Group', ['$resource', function($resource) {
 //     templateUrl: 'app/views/showPost.html',
 //     controller: 'ShowCtrl'
 //   })
-//   .when('/signup', {
-//     templateUrl: 'app/views/userSignup.html',
-//     controller: 'SignupCtrl'
-//   })
+
 //   .when('/login', {
 //     templateUrl: 'app/views/userLogin.html',
 //     controller: 'LoginCtrl'
